@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grocery</title>
+    <style>
+          .h3{
+                
+                color:blue;
+                font-weight: bold;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+            #btn
+            {
+                width:150px;
+                height: 50px;
+                background-color:white;
+                color:royalblue;
+                font-weight: bold;
+                font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                transition-duration: 0.4s;
+                border-radius: 12px;
+                border-color: royalblue;
+            }
+            #btn:hover {
+                background-color: rebeccapurple; /* yellow */
+                color:salmon;
+            }
+        th, td, p, input, h3 {
+            font:15px 'Segoe UI';
+        }
+        table, th, td {
+            border: solid 1px #ddd;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        th {
+            font-weight:bold;
+        }
+
+    </style>
+</head>
+<body>
+ 
+<center>
+    
+            <h2>Shopping List</h2>
+                     
+            
+            <input type="button" id="btn" value="Show" onclick="tableFromJson();">
+            
+        </div>
+    </center>
+        
+    <p id='showData'></p>
+    
+    <p id='msg'></p>
+</body>
+
+<script>
+	
+    function tableFromJson() {
+	
+        var grocery = [
+            {'Serial no.': '1', 'Product': 'Rice',
+                'Quantity': '5', 'Unit': 'Kg','DEPARTMENT':'Essentials','Notes':'Matta Rice'
+            },
+            {'Serial no.': '2', 'Product': 'Cooking oil',
+                'Quantity': '1', 'Unit': 'Ltr','DEPARTMENT':'Essentials','Notes':'Sunflower'
+            },
+            {'Serial no.': '3', 'Product': 'Milk',
+                'Quantity': '2', 'Unit': 'Packets','DEPARTMENT':'Diary Products','Notes':'Milma'
+            },
+            {'Serial no.': '4', 'Product': 'Butter',
+                'Quantity': '1', 'Unit': 'Packet','DEPARTMENT':'Diary Products','Notes':'Salted'
+            },
+            {'Serial no.': '5', 'Product': 'Soap',
+                'Quantity': '1', 'Unit': 'No.','DEPARTMENT':'Health and Beauty','Notes':'Lux'
+            },
+            {'Serial no.': '6', 'Product': 'Biscuits',
+                'Quantity': '2', 'Unit': 'Packets','DEPARTMENT':'Snacks','Notes':'Good day'
+            },
+            
+          
+
+          
+          
+        ]
+
+       
+        var col = [];
+        for (var i = 0; i < grocery.length; i++) {
+            for (var key in grocery[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+
+        
+        var table = document.createElement("table");
+
+       
+        var tr = table.insertRow(-1);                   
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");     
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+      
+        for (var i = 0; i < grocery.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = grocery[i][col[j]];
+            }
+        }
+
+        
+        var divShowData = document.getElementById('showData');
+        divShowData.innerHTML = "";
+        divShowData.appendChild(table);
+        
+       
+    }
+    
+    
+    
+</script>
+</html>
